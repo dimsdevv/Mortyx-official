@@ -19,11 +19,16 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
+          extensions: pdo, pdo_mysql, pdo_sqlite
 
       - name: Validate PHP Syntax (Linting)
         run: |
           find . -name "*.php" -not -path "./vendor/*" -exec php -l {} \;
 
-      - name: Run Automated Unit & Integration Tests
+      - name: Run Catalog & Layout Unit Tests
         run: |
           php tests/test_runner.php
+
+      - name: Run Relational Database & Transaction Tests
+        run: |
+          php tests/test_database.php
