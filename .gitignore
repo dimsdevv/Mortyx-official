@@ -16,6 +16,8 @@ out/
 coverage/
 *.lcov
 .nyc_output
+*.sqlite
+*.sqlite3
 
 # Environment & Secrets
 .env
@@ -45,4 +47,3 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
-

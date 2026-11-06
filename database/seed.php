@@ -3,6 +3,7 @@
  * MORTYX Apparel — Relational Database Seeder
  * 
  * Populates categories, products, multi-size SKU variants, and default admin user.
+ * Written with standard ANSI SQL so it works seamlessly on both MySQL and SQLite.
  */
 
 require_once __DIR__ . '/../config/database.php';
@@ -21,30 +22,41 @@ if (!function_exists('run_seeder')) {
                 ['name' => 'Accessories', 'slug' => 'accessories', 'description' => 'Tactical bags, headwear, and apparel essentials.']
             ];
 
-            $catStmt = $pdo->prepare("INSERT INTO `categories` (`name`, `slug`, `description`) VALUES (:name, :slug, :description) ON DUPLICATE KEY UPDATE `name`=VALUES(`name`)");
+            $checkCat = $pdo->prepare("SELECT id FROM `categories` WHERE `slug` = :slug LIMIT 1");
+            $insertCat = $pdo->prepare("INSERT INTO `categories` (`name`, `slug`, `description`) VALUES (:name, :slug, :description)");
             $catIdMap = [];
 
             foreach ($categories as $cat) {
-                $catStmt->execute($cat);
-                $fetchStmt = $pdo->prepare("SELECT id FROM `categories` WHERE `slug` = :slug LIMIT 1");
-                $fetchStmt->execute(['slug' => $cat['slug']]);
-                $catIdMap[$cat['slug']] = (int) $fetchStmt->fetchColumn();
+                $checkCat->execute(['slug' => $cat['slug']]);
+                $existingId = $checkCat->fetchColumn();
+
+                if ($existingId) {
+                    $catIdMap[$cat['slug']] = (int) $existingId;
+                } else {
+                    $insertCat->execute($cat);
+                    $catIdMap[$cat['slug']] = (int) $pdo->lastInsertId();
+                }
             }
 
             // 2. Seed Admin User
             $adminEmail = 'admin@mortyx.com';
-            $adminHash = password_hash('mortyx2026', PASSWORD_BCRYPT);
-            $userStmt = $pdo->prepare("
-                INSERT INTO `users` (`name`, `email`, `password`, `phone`, `role`)
-                VALUES (:name, :email, :password, :phone, 'admin')
-                ON DUPLICATE KEY UPDATE `password` = VALUES(`password`)
-            ");
-            $userStmt->execute([
-                'name'     => 'MORTYX Head Officer',
-                'email'    => $adminEmail,
-                'password' => $adminHash,
-                'phone'    => '+6281299990001'
-            ]);
+            $checkUser = $pdo->prepare("SELECT id FROM `users` WHERE `email` = :email LIMIT 1");
+            $checkUser->execute(['email' => $adminEmail]);
+            $existingUserId = $checkUser->fetchColumn();
+
+            if (!$existingUserId) {
+                $adminHash = password_hash('mortyx2026', PASSWORD_BCRYPT);
+                $insertUser = $pdo->prepare("
+                    INSERT INTO `users` (`name`, `email`, `password`, `phone`, `role`)
+                    VALUES (:name, :email, :password, :phone, 'admin')
+                ");
+                $insertUser->execute([
+                    'name'     => 'MORTYX Head Officer',
+                    'email'    => $adminEmail,
+                    'password' => $adminHash,
+                    'phone'    => '+6281299990001'
+                ]);
+            }
 
             // 3. Seed Products & SKU Variants
             $productsData = [
@@ -185,55 +197,61 @@ if (!function_exists('run_seeder')) {
                 ]
             ];
 
-            $prodStmt = $pdo->prepare("
+            $checkProd = $pdo->prepare("SELECT id FROM `products` WHERE `slug` = :slug LIMIT 1");
+            $insertProd = $pdo->prepare("
                 INSERT INTO `products` 
                 (`category_id`, `name`, `slug`, `base_price`, `compare_price`, `tag`, `tag_color`, `short_description`, `full_description`, `primary_image`, `hover_image`, `rating`, `review_count`, `is_active`)
                 VALUES 
                 (:category_id, :name, :slug, :base_price, :compare_price, :tag, :tag_color, :short_description, :full_description, :primary_image, :hover_image, :rating, :review_count, 1)
-                ON DUPLICATE KEY UPDATE `base_price`=VALUES(`base_price`), `tag`=VALUES(`tag`)
             ");
 
-            $varStmt = $pdo->prepare("
+            $checkVar = $pdo->prepare("SELECT id FROM `product_variants` WHERE `sku` = :sku LIMIT 1");
+            $insertVar = $pdo->prepare("
                 INSERT INTO `product_variants`
                 (`product_id`, `size`, `color`, `color_hex`, `stock`, `sku`)
                 VALUES
                 (:product_id, :size, :color, :color_hex, :stock, :sku)
-                ON DUPLICATE KEY UPDATE `stock`=VALUES(`stock`)
             ");
 
             foreach ($productsData as $item) {
                 $catId = $catIdMap[$item['category_slug']];
-                $prodStmt->execute([
-                    'category_id'       => $catId,
-                    'name'              => $item['name'],
-                    'slug'              => $item['slug'],
-                    'base_price'        => $item['base_price'],
-                    'compare_price'     => $item['compare_price'],
-                    'tag'               => $item['tag'],
-                    'tag_color'         => $item['tag_color'],
-                    'short_description' => $item['short_desc'],
-                    'full_description'  => $item['full_desc'],
-                    'primary_image'     => $item['image'],
-                    'hover_image'       => $item['hover_image'],
-                    'rating'            => $item['rating'],
-                    'review_count'      => $item['review_count']
-                ]);
+                $checkProd->execute(['slug' => $item['slug']]);
+                $existingProdId = $checkProd->fetchColumn();
 
-                // Ambil ID produk
-                $getIdStmt = $pdo->prepare("SELECT id FROM `products` WHERE `slug` = :slug LIMIT 1");
-                $getIdStmt->execute(['slug' => $item['slug']]);
-                $productId = (int) $getIdStmt->fetchColumn();
+                if ($existingProdId) {
+                    $productId = (int) $existingProdId;
+                } else {
+                    $insertProd->execute([
+                        'category_id'       => $catId,
+                        'name'              => $item['name'],
+                        'slug'              => $item['slug'],
+                        'base_price'        => $item['base_price'],
+                        'compare_price'     => $item['compare_price'],
+                        'tag'               => $item['tag'],
+                        'tag_color'         => $item['tag_color'],
+                        'short_description' => $item['short_desc'],
+                        'full_description'  => $item['full_desc'],
+                        'primary_image'     => $item['image'],
+                        'hover_image'       => $item['hover_image'],
+                        'rating'            => $item['rating'],
+                        'review_count'      => $item['review_count']
+                    ]);
+                    $productId = (int) $pdo->lastInsertId();
+                }
 
                 // Masukkan varian ukuran
                 foreach ($item['variants'] as $v) {
-                    $varStmt->execute([
-                        'product_id' => $productId,
-                        'size'       => $v['size'],
-                        'color'      => $item['color'],
-                        'color_hex'  => $item['color_hex'],
-                        'stock'      => $v['stock'],
-                        'sku'        => $v['sku']
-                    ]);
+                    $checkVar->execute(['sku' => $v['sku']]);
+                    if (!$checkVar->fetchColumn()) {
+                        $insertVar->execute([
+                            'product_id' => $productId,
+                            'size'       => $v['size'],
+                            'color'      => $item['color'],
+                            'color_hex'  => $item['color_hex'],
+                            'stock'      => $v['stock'],
+                            'sku'        => $v['sku']
+                        ]);
+                    }
                 }
             }
 
