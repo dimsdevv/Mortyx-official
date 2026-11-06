@@ -144,3 +144,4 @@
             <a href="#about" class="block py-2 border-b border-zinc-900 hover:text-white">Manifesto</a>
         </div>
     </header>
+

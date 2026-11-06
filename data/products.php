@@ -156,3 +156,4 @@ if (!function_exists('get_products')) {
         ];
     }
 }
+
