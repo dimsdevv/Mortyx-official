@@ -106,3 +106,4 @@ Automated test runner menggunakan SQLite in-memory untuk memverifikasi fungsiona
 - [ ] Seluruh perubahan dicommit secara atomic dengan konvensi conventional commits.
 - [ ] Branch `feature/auth-system` di-push ke remote GitHub.
 - [ ] PR dibuat, direview, dan dimerge ke branch `main`.
+

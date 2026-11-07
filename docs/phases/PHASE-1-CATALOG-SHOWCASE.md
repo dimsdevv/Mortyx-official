@@ -32,3 +32,4 @@ Phase 1 mendirikan fondasi arsitektur sistem e-commerce MORTYX, menyusun dokumen
 3. **CI & Automated Testing**:
    - `tests/test_runner.php`: 15 unit test untuk helper rupiah, integritas schema produk, kelengkapan file asset, dan validasi kategori.
    - `.github/workflows/ci.yml`: GitHub Actions pipeline untuk otomatisasi pengujian PHP di lingkungan CI.
+

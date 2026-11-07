@@ -36,3 +36,4 @@ Phase 2 merancang arsitektur penyimpanan relasional MySQL InnoDB dengan integrit
 4. **Automated Database Test Suite (`tests/test_database.php`)**:
    - 26 unit & integration tests.
    - Verifikasi DDL skema, validasi seeder, keunikan SKU, verifikasi hash bcrypt password admin, kueri JOIN relasional, dan pengujian rollback atomik transaksi (ACID).
+

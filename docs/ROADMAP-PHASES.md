@@ -23,3 +23,4 @@ Dokumen ini melacak seluruh siklus pengembangan (SDLC) brand e-commerce streetwe
 3. **Automated Testing Mandatory**: Sebelum merge ke `main`, seluruh automated test suite harus berstatus 🟢 **PASS**.
 4. **Zero AI Slop**: Penerapan pedoman `anti-slop`, `impeccable`, dan `minimalist-ui` pada seluruh tampilan dan kode.
 5. **Deep Module Pattern**: Penerapan prinsip `codebase-design` untuk modul backend (isolasi antarmuka sempit dengan implementasi yang tersembunyi).
+
