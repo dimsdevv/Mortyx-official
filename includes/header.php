@@ -1,3 +1,11 @@
+<?php
+if (!class_exists('Auth')) {
+    require_once __DIR__ . '/Auth.php';
+}
+Auth::init();
+$currentUser = Auth::user();
+$isLoggedIn = Auth::check();
+?>
 <!DOCTYPE html>
 <html lang="id" class="dark scroll-smooth">
 <head>
@@ -114,6 +122,23 @@
                     </svg>
                 </button>
 
+                <!-- Auth / Account Control -->
+                <?php if ($isLoggedIn): ?>
+                    <a href="customer/account.php" class="flex items-center space-x-2 text-xs font-semibold text-zinc-300 hover:text-white bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 transition-colors hover:border-zinc-700" title="Member Portal">
+                        <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        <span class="font-mono text-xs uppercase tracking-wider max-w-[90px] truncate hidden sm:inline"><?php echo htmlspecialchars($currentUser['name'] ?? 'MEMBER'); ?></span>
+                    </a>
+                <?php else: ?>
+                    <a href="auth/login.php" class="hidden sm:inline-flex items-center space-x-1.5 text-xs font-semibold uppercase tracking-wider text-zinc-400 hover:text-white px-2 py-1 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        <span>Sign In</span>
+                    </a>
+                <?php endif; ?>
+
                 <!-- Cart Button with Count Badge -->
                 <button id="cartDrawerOpenBtn" aria-label="View Shopping Cart" class="relative p-2 text-zinc-300 hover:text-white flex items-center bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 space-x-2 transition-colors hover:border-zinc-700">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,6 +167,16 @@
             <a href="#featured" class="block py-2 border-b border-zinc-900 hover:text-white">Drop 04</a>
             <a href="#lookbook" class="block py-2 border-b border-zinc-900 hover:text-white">Lookbook</a>
             <a href="#about" class="block py-2 border-b border-zinc-900 hover:text-white">Manifesto</a>
+            <?php if ($isLoggedIn): ?>
+                <a href="customer/account.php" class="block py-2 border-b border-zinc-900 text-white font-mono flex items-center justify-between">
+                    <span>PORTAL: <?php echo htmlspecialchars($currentUser['name'] ?? 'MEMBER'); ?></span>
+                    <span class="text-xs text-zinc-500">→</span>
+                </a>
+                <a href="auth/logout.php" class="block py-2 border-b border-zinc-900 text-red-400">Sign Out</a>
+            <?php else: ?>
+                <a href="auth/login.php" class="block py-2 border-b border-zinc-900 hover:text-white">Sign In</a>
+                <a href="auth/register.php" class="block py-2 border-b border-zinc-900 hover:text-white">Create Account</a>
+            <?php endif; ?>
         </div>
     </header>
 
