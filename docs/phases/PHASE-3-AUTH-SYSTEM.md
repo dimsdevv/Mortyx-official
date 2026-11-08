@@ -1,7 +1,7 @@
 # MORTYX APPAREL — PHASE 3 TECHNICAL SPECIFICATION
 ## Feature: Authentication & Customer Portal (`feature/auth-system`)
 
-**Status**: 🟡 IN PROGRESS (Branch Active)  
+**Status**: 🟢 MERGED (PR #3 `7c08446`)  
 **Branch**: `feature/auth-system`  
 **Base Branch**: `main` (`commit 0d4c67b`)  
 **Standard Compliance**: SRS (FR-AUT-01 s/d FR-AUT-05, NFR-SEC-01 s/d NFR-SEC-04), PRD, `codebase-design`, `anti-slop`, `impeccable`  

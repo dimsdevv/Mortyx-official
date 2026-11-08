@@ -10,7 +10,7 @@ Dokumen ini melacak seluruh siklus pengembangan (SDLC) brand e-commerce streetwe
 |---|---|---|---|---|---|---|
 | **Phase 1** | Architecture Foundation & Catalog Showcase | `feature/catalog-showcase` | 🟢 MERGED | PR #1 (`344dc32`) | 15 Tests PASS | [`PHASE-1-CATALOG-SHOWCASE.md`](./phases/PHASE-1-CATALOG-SHOWCASE.md) |
 | **Phase 2** | Relational Database Schema & Seeder | `feature/database-setup` | 🟢 MERGED | PR #2 (`0d4c67b`) | 26 Tests PASS | [`PHASE-2-DATABASE-SETUP.md`](./phases/PHASE-2-DATABASE-SETUP.md) |
-| **Phase 3** | Authentication & Customer Portal | `feature/auth-system` | 🟡 IN PROGRESS | - | `test_auth.php` | [`PHASE-3-AUTH-SYSTEM.md`](./phases/PHASE-3-AUTH-SYSTEM.md) |
+| **Phase 3** | Authentication & Customer Portal | `feature/auth-system` | 🟢 MERGED | PR #3 (`7c08446`) | 25 Tests PASS | [`PHASE-3-AUTH-SYSTEM.md`](./phases/PHASE-3-AUTH-SYSTEM.md) |
 | **Phase 4** | Checkout & Stock Reservation Flow | `feature/checkout-flow` | ⚪ PLANNED | - | `test_checkout.php` | - |
 | **Phase 5** | Payment Gateway Webhook Integration | `feature/payment-webhook` | ⚪ PLANNED | - | `test_payment.php` | - |
 | **Phase 6** | Admin Inventory & Order Management | `feature/admin-dashboard` | ⚪ PLANNED | - | `test_admin.php` | - |
