@@ -1,7 +1,7 @@
 # MORTYX APPAREL — UI REDESIGN TECHNICAL SPECIFICATION
 ## Reference: CALLE DE LARACHE Minimalist Aesthetic (`feature/minimalist-ui-redesign`)
 
-**Status**: 🟡 IN PROGRESS (Branch Active)  
+**Status**: 🟢 MERGED (PR #4)  
 **Branch**: `feature/minimalist-ui-redesign`  
 **Base Branch**: `main` (`commit 9f0bc42`)  
 **Design Reference**: [CALLE DE LARACHE](https://www.calledelarache.com/)  
