@@ -72,13 +72,6 @@ $isLoggedIn = Auth::check();
 </head>
 <body class="bg-white text-zinc-900 min-h-screen flex flex-col antialiased selection:bg-black selection:text-white">
 
-    <!-- Top Announcement Bar (Subtle & Minimalist) -->
-    <div class="bg-zinc-100 border-b border-zinc-200 text-[11px] py-2 px-4 text-center tracking-widest uppercase font-medium text-zinc-600">
-        <span>FREE SHIPPING JABODETABEK MIN. IDR 500K</span>
-        <span class="mx-3 text-zinc-300">|</span>
-        <span class="text-zinc-900 font-semibold">DROP 04 IS LIVE</span>
-    </div>
-
     <!-- Main Navigation Bar (Clean White, CALLE Style) -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-4 flex items-center justify-between">
@@ -99,9 +92,9 @@ $isLoggedIn = Auth::check();
 
             <!-- Center: Navigation Links (Clean & Minimalist) -->
             <nav class="hidden md:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-zinc-800">
-                <a href="#catalog" class="hover:text-zinc-500 transition-colors">Catalog</a>
-                <a href="#lookbook" class="hover:text-zinc-500 transition-colors">Community</a>
-                <a href="#catalog" class="hover:text-zinc-500 transition-colors">Archives</a>
+                <a href="catalog.php" class="hover:text-zinc-500 transition-colors">Catalog</a>
+                <a href="catalog.php" class="hover:text-zinc-500 transition-colors">Community</a>
+                <a href="catalog.php" class="hover:text-zinc-500 transition-colors">Archives</a>
                 <a href="#about" class="hover:text-zinc-500 transition-colors">About</a>
             </nav>
 
@@ -160,9 +153,9 @@ $isLoggedIn = Auth::check();
 
         <!-- Mobile Menu Dropdown -->
         <div id="mobileMenuDropdown" class="hidden md:hidden border-t border-zinc-200 bg-white px-5 pt-3 pb-6 space-y-3 text-xs uppercase tracking-wider font-bold text-zinc-800">
-            <a href="#catalog" class="block py-2 border-b border-zinc-100 hover:text-black">Catalog</a>
-            <a href="#lookbook" class="block py-2 border-b border-zinc-100 hover:text-black">Community</a>
-            <a href="#catalog" class="block py-2 border-b border-zinc-100 hover:text-black">Archives</a>
+            <a href="catalog.php" class="block py-2 border-b border-zinc-100 hover:text-black">Catalog</a>
+            <a href="catalog.php" class="block py-2 border-b border-zinc-100 hover:text-black">Community</a>
+            <a href="catalog.php" class="block py-2 border-b border-zinc-100 hover:text-black">Archives</a>
             <a href="#about" class="block py-2 border-b border-zinc-100 hover:text-black">About</a>
             <?php if ($isLoggedIn): ?>
                 <a href="customer/account.php" class="block py-2 border-b border-zinc-100 text-black flex items-center justify-between">
