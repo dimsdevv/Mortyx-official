@@ -32,3 +32,7 @@ jobs:
       - name: Run Relational Database & Transaction Tests
         run: |
           php tests/test_database.php
+
+      - name: Run Authentication & Customer Portal Tests
+        run: |
+          php tests/test_auth.php
