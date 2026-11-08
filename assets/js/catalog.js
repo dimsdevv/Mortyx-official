@@ -1,5 +1,6 @@
 /**
  * MORTYX Apparel — Client-side Catalog, QuickView & Cart Management
+ * Clean Minimalist UI (CALLE Style)
  */
 
 (function () {
@@ -102,13 +103,13 @@
         }
     }
 
-    // Category button listeners
+    // Category button listeners (Clean Minimalist Active States)
     categoryBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             categoryBtns.forEach(b => {
-                b.className = 'category-filter-btn px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-sm transition-all whitespace-nowrap bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700';
+                b.className = 'category-filter-btn px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded transition-all whitespace-nowrap text-zinc-600 hover:text-black hover:bg-zinc-100';
             });
-            btn.className = 'category-filter-btn px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-sm transition-all whitespace-nowrap bg-white text-black font-bold';
+            btn.className = 'category-filter-btn px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded transition-all whitespace-nowrap bg-black text-white';
             activeCategory = btn.dataset.category;
             applyFilters();
         });
@@ -152,7 +153,7 @@
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-        if (cartCountBadge) cartCountBadge.textContent = totalItems;
+        if (cartCountBadge) cartCountBadge.textContent = `(${totalItems})`;
         if (cartDrawerCount) cartDrawerCount.textContent = `(${totalItems})`;
         if (cartSubtotalPrice) cartSubtotalPrice.textContent = formatRupiah(subtotal);
 
@@ -164,12 +165,12 @@
             freeShippingStatus.textContent = `${formatRupiah(subtotal)} / 500K`;
 
             if (subtotal >= threshold) {
-                freeShippingText.innerHTML = '<span class="text-emerald-400 font-bold">✓ Selamat! Anda berhak Bebas Ongkir</span>';
-                freeShippingBar.className = 'bg-emerald-400 h-full transition-all duration-500';
+                freeShippingText.innerHTML = '<span class="text-zinc-900 font-bold">✓ Selamat! Anda berhak Bebas Ongkir</span>';
+                freeShippingBar.className = 'bg-black h-full transition-all duration-500';
             } else {
                 const diff = threshold - subtotal;
                 freeShippingText.textContent = `Belanja ${formatRupiah(diff)} lagi untuk Bebas Ongkir`;
-                freeShippingBar.className = 'bg-white h-full transition-all duration-500';
+                freeShippingBar.className = 'bg-black h-full transition-all duration-500';
             }
         }
 
@@ -178,12 +179,12 @@
 
         if (cart.length === 0) {
             cartItemList.innerHTML = `
-                <div id="emptyCartNotice" class="h-64 flex flex-col items-center justify-center text-center space-y-3 text-zinc-500">
-                    <svg class="w-12 h-12 stroke-[1.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div id="emptyCartNotice" class="h-64 flex flex-col items-center justify-center text-center space-y-3 text-zinc-400">
+                    <svg class="w-10 h-10 stroke-[1.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                     </svg>
-                    <p class="text-sm font-medium">Keranjang belanja Anda masih kosong.</p>
-                    <button id="browseFromEmptyCart" class="text-xs uppercase font-bold tracking-wider text-white underline underline-offset-4 hover:text-zinc-300">Jelajahi Koleksi</button>
+                    <p class="text-xs font-medium text-zinc-500">Keranjang belanja Anda masih kosong.</p>
+                    <button id="browseFromEmptyCart" class="text-xs uppercase font-bold tracking-wider text-black underline underline-offset-4 hover:text-zinc-600">Jelajahi Koleksi</button>
                 </div>
             `;
             const browseBtn = document.getElementById('browseFromEmptyCart');
@@ -195,19 +196,19 @@
         cart.forEach((item, index) => {
             html += `
                 <div class="py-4 flex items-center space-x-4">
-                    <img src="${item.image}" alt="${item.name}" class="w-16 h-20 object-cover bg-zinc-900 rounded-sm border border-zinc-800">
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-20 object-cover bg-zinc-100 rounded border border-zinc-200">
                     <div class="flex-1 min-w-0">
-                        <h4 class="text-xs font-bold text-white truncate">${item.name}</h4>
-                        <div class="flex items-center space-x-2 mt-1 text-[11px] text-zinc-400 font-mono">
-                            <span>Size: <strong class="text-zinc-200">${item.size}</strong></span>
+                        <h4 class="text-xs font-bold text-black truncate uppercase tracking-tight">${item.name}</h4>
+                        <div class="flex items-center space-x-2 mt-1 text-[11px] text-zinc-500 font-mono">
+                            <span>Size: <strong class="text-black">${item.size}</strong></span>
                             <span>•</span>
-                            <span class="text-zinc-300">${formatRupiah(item.price)}</span>
+                            <span class="text-black font-semibold">${formatRupiah(item.price)}</span>
                         </div>
-                        <div class="flex items-center space-x-2 mt-2">
-                            <button class="cart-qty-btn px-2 py-0.5 bg-zinc-800 hover:bg-zinc-700 text-xs rounded text-zinc-200" data-action="decrease" data-index="${index}">-</button>
-                            <span class="text-xs font-mono px-2 font-bold">${item.quantity}</span>
-                            <button class="cart-qty-btn px-2 py-0.5 bg-zinc-800 hover:bg-zinc-700 text-xs rounded text-zinc-200" data-action="increase" data-index="${index}">+</button>
-                            <button class="cart-remove-btn text-[11px] text-red-400/80 hover:text-red-300 ml-auto" data-index="${index}">Hapus</button>
+                        <div class="flex items-center space-x-2 mt-2.5">
+                            <button class="cart-qty-btn px-2 py-0.5 bg-zinc-100 hover:bg-zinc-200 text-xs rounded border border-zinc-200 text-black font-bold" data-action="decrease" data-index="${index}">-</button>
+                            <span class="text-xs font-mono px-2 font-bold text-black">${item.quantity}</span>
+                            <button class="cart-qty-btn px-2 py-0.5 bg-zinc-100 hover:bg-zinc-200 text-xs rounded border border-zinc-200 text-black font-bold" data-action="increase" data-index="${index}">+</button>
+                            <button class="cart-remove-btn text-[11px] text-zinc-400 hover:text-red-600 ml-auto" data-index="${index}">Hapus</button>
                         </div>
                     </div>
                 </div>
@@ -270,48 +271,44 @@
                 alert('Keranjang belanja Anda masih kosong. Silakan pilih produk terlebih dahulu.');
                 return;
             }
-            alert('Fitur Checkout akan segera hadir pada Tahap 3 (branch: feature/checkout-flow)!');
+            alert('Fitur Checkout akan segera hadir pada Tahap 4 (branch: feature/checkout-flow)!');
         });
     }
 
-    // 5. Quick View Modal Logic
+    // 5. Quick View Modal Logic (Clean Minimalist White)
     function openQuickView(productId) {
         const prod = products.find(p => p.id === parseInt(productId));
         if (!prod || !quickViewContent) return;
 
         let selectedSize = prod.sizes[0];
-        let quantity = 1;
 
         quickViewContent.innerHTML = `
-            <div class="relative aspect-[3/4] bg-zinc-900 rounded-sm overflow-hidden border border-zinc-800">
+            <div class="relative aspect-[3/4] bg-zinc-100 rounded overflow-hidden border border-zinc-200">
                 <img id="modalMainImg" src="${prod.image}" alt="${prod.name}" class="w-full h-full object-cover">
-                <div class="absolute top-3 left-3 bg-black/70 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono uppercase text-zinc-300 border border-zinc-700">
+                <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[10px] font-mono uppercase text-black border border-zinc-200 font-bold">
                     ${prod.category_name}
                 </div>
             </div>
             <div class="flex flex-col justify-between space-y-5">
                 <div>
-                    <div class="flex items-center space-x-2 text-amber-400 text-xs mb-1">
-                        <span>★ ${prod.rating}</span>
-                        <span class="text-zinc-500 font-mono">(${prod.review_count} reviews)</span>
-                    </div>
-                    <h3 class="font-heading font-black text-2xl text-white tracking-tight uppercase">${prod.name}</h3>
+                    <span class="text-[11px] font-mono uppercase text-zinc-400 tracking-wider">SEASON 2026 // DROP 04</span>
+                    <h3 class="font-heading font-black text-2xl text-black tracking-tight uppercase mt-1">${prod.name}</h3>
                     <div class="mt-2 flex items-baseline space-x-3">
-                        <span class="font-mono text-xl font-bold text-white">${formatRupiah(prod.price)}</span>
-                        ${prod.original_price > prod.price ? `<span class="font-mono text-sm text-zinc-500 line-through">${formatRupiah(prod.original_price)}</span>` : ''}
+                        <span class="font-mono text-xl font-bold text-black">${formatRupiah(prod.price)}</span>
+                        ${prod.original_price > prod.price ? `<span class="font-mono text-sm text-zinc-400 line-through">${formatRupiah(prod.original_price)}</span>` : ''}
                     </div>
-                    <p class="text-xs text-zinc-400 mt-3 leading-relaxed">${prod.description}</p>
+                    <p class="text-xs text-zinc-500 mt-3 leading-relaxed">${prod.description}</p>
                 </div>
 
                 <!-- Size Selector -->
                 <div>
-                    <div class="flex justify-between items-center text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-2">
+                    <div class="flex justify-between items-center text-xs font-bold uppercase tracking-wider text-black mb-2">
                         <span>Select Size</span>
-                        <span class="text-zinc-500 font-mono text-[11px]">STOCK: ${prod.stock} PCS</span>
+                        <span class="text-zinc-400 font-mono text-[11px] font-medium">AVAILABLE</span>
                     </div>
                     <div class="flex flex-wrap gap-2" id="modalSizePills">
                         ${prod.sizes.map((s, idx) => `
-                            <button type="button" class="size-pill px-3.5 py-2 border text-xs font-mono font-bold rounded-sm transition-all ${idx === 0 ? 'bg-white text-black border-white' : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:border-zinc-600'}" data-size="${s}">
+                            <button type="button" class="size-pill px-3.5 py-2 border text-xs font-mono font-bold rounded transition-all ${idx === 0 ? 'bg-black text-white border-black' : 'bg-white border-zinc-200 text-zinc-800 hover:border-black'}" data-size="${s}">
                                 ${s}
                             </button>
                         `).join('')}
@@ -319,16 +316,16 @@
                 </div>
 
                 <!-- Color Swatch Indicator -->
-                <div class="flex items-center space-x-2 text-xs text-zinc-400">
-                    <span>Colorway:</span>
-                    <span class="w-3.5 h-3.5 rounded-full inline-block border border-zinc-700" style="background-color: ${prod.color_hex};"></span>
-                    <span class="text-zinc-200 font-medium">${prod.color}</span>
+                <div class="flex items-center space-x-2 text-xs text-zinc-500">
+                    <span class="font-semibold uppercase tracking-wider text-[11px]">Colorway:</span>
+                    <span class="w-3.5 h-3.5 rounded-full inline-block border border-zinc-300 shadow-sm" style="background-color: ${prod.color_hex};"></span>
+                    <span class="text-black font-semibold">${prod.color}</span>
                 </div>
 
                 <!-- Add To Bag Button -->
                 <div class="pt-2">
-                    <button id="modalAddToCartBtn" class="w-full py-4 bg-white text-black font-heading font-black text-xs uppercase tracking-widest hover:bg-zinc-200 transition-colors rounded-sm flex items-center justify-center space-x-2 shadow-lg">
-                        <span>ADD TO BAG</span>
+                    <button id="modalAddToCartBtn" class="w-full py-4 bg-black hover:bg-zinc-800 text-white font-heading font-black text-xs uppercase tracking-widest transition-colors rounded flex items-center justify-center space-x-2 shadow">
+                        <span>ADD TO CART</span>
                         <span>•</span>
                         <span class="font-mono font-bold">${formatRupiah(prod.price)}</span>
                     </button>
@@ -341,9 +338,9 @@
         sizePills.forEach(pill => {
             pill.addEventListener('click', (e) => {
                 sizePills.forEach(p => {
-                    p.className = 'size-pill px-3.5 py-2 border text-xs font-mono font-bold rounded-sm transition-all bg-zinc-900 border-zinc-800 text-zinc-300 hover:border-zinc-600';
+                    p.className = 'size-pill px-3.5 py-2 border text-xs font-mono font-bold rounded transition-all bg-white border-zinc-200 text-zinc-800 hover:border-black';
                 });
-                pill.className = 'size-pill px-3.5 py-2 border text-xs font-mono font-bold rounded-sm transition-all bg-white text-black border-white';
+                pill.className = 'size-pill px-3.5 py-2 border text-xs font-mono font-bold rounded transition-all bg-black text-white border-black';
                 selectedSize = pill.dataset.size;
             });
         });
@@ -442,4 +439,3 @@
     // Initial render
     renderCart();
 })();
-
