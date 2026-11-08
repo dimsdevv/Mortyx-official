@@ -62,6 +62,7 @@
 
     // 3. Filter & Sort Logic
     function applyFilters() {
+        if (!productGrid) return;
         let visibleCount = 0;
         const cardsArray = Array.from(productCards);
 
@@ -124,6 +125,10 @@
 
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
+            if (!productGrid && e.target.value.trim().length > 0) {
+                window.location.href = 'catalog.php';
+                return;
+            }
             searchQuery = e.target.value.trim();
             applyFilters();
         });
