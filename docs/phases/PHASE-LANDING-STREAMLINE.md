@@ -1,7 +1,7 @@
 # MORTYX APPAREL — LANDING STREAMLINE SPECIFICATION
 ## Minimalist Landing Splash & Separate Catalog Route (`feature/landing-streamline`)
 
-**Status**: 🟡 IN PROGRESS (Branch Active)  
+**Status**: 🟢 MERGED (PR #5)  
 **Branch**: `feature/landing-streamline`  
 **Base Branch**: `main` (`commit b25b108`)  
 **Design Reference**: [CALLE DE LARACHE](https://www.calledelarache.com/) Homepage Splash Pattern  

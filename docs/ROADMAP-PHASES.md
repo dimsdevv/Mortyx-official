@@ -12,7 +12,7 @@ Dokumen ini melacak seluruh siklus pengembangan (SDLC) brand e-commerce streetwe
 | **Phase 2** | Relational Database Schema & Seeder | `feature/database-setup` | 🟢 MERGED | PR #2 (`0d4c67b`) | 26 Tests PASS | [`PHASE-2-DATABASE-SETUP.md`](./phases/PHASE-2-DATABASE-SETUP.md) |
 | **Phase 3** | Authentication & Customer Portal | `feature/auth-system` | 🟢 MERGED | PR #3 (`7c08446`) | 25 Tests PASS | [`PHASE-3-AUTH-SYSTEM.md`](./phases/PHASE-3-AUTH-SYSTEM.md) |
 | **Design Upgrade** | CALLE Minimalist UI Overhaul | `feature/minimalist-ui-redesign` | 🟢 MERGED | PR #4 (`b1bdd23`) | 66 Tests PASS | [`PHASE-REDESIGN-CALLE-MINIMALIST.md`](./phases/PHASE-REDESIGN-CALLE-MINIMALIST.md) |
-| **Streamline UX** | Landing Splash & Separate Catalog | `feature/landing-streamline` | 🟡 IN PROGRESS | - | 66 Tests PASS | [`PHASE-LANDING-STREAMLINE.md`](./phases/PHASE-LANDING-STREAMLINE.md) |
+| **Streamline UX** | Landing Splash & Separate Catalog | `feature/landing-streamline` | 🟢 MERGED | PR #5 (`cf0dc2f`) | 66 Tests PASS | [`PHASE-LANDING-STREAMLINE.md`](./phases/PHASE-LANDING-STREAMLINE.md) |
 | **Phase 4** | Checkout & Stock Reservation Flow | `feature/checkout-flow` | ⚪ PLANNED | - | `test_checkout.php` | - |
 | **Phase 5** | Payment Gateway Webhook Integration | `feature/payment-webhook` | ⚪ PLANNED | - | `test_payment.php` | - |
 | **Phase 6** | Admin Inventory & Order Management | `feature/admin-dashboard` | ⚪ PLANNED | - | `test_admin.php` | - |
