@@ -7,36 +7,31 @@ $currentUser = Auth::user();
 $isLoggedIn = Auth::check();
 ?>
 <!DOCTYPE html>
-<html lang="id" class="dark scroll-smooth">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($page_title) ? htmlspecialchars($page_title) . ' | MORTYX APPAREL' : 'MORTYX — Official Streetwear & Contemporary Apparel'; ?></title>
+    <title><?php echo isset($page_title) ? htmlspecialchars($page_title) . ' | MORTYX APPAREL' : 'MORTYX — Contemporary Streetwear & Modern Apparel'; ?></title>
     
-    <!-- Google Fonts: Syne & Plus Jakarta Sans -->
+    <!-- Google Fonts: Syne (Brand) & Plus Jakarta Sans (Clean Minimalist Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        dark: {
-                            950: '#080809',
-                            900: '#0e0e11',
-                            800: '#16161b',
-                            700: '#22222a',
-                            600: '#32323c'
-                        },
+                        canvas: '#ffffff',
+                        surface: '#f9f9f9',
+                        border: '#e5e7eb',
                         brand: {
-                            accent: '#ffffff',
-                            muted: '#94a3b8',
-                            neon: '#e2fd52'
+                            black: '#000000',
+                            charcoal: '#111827',
+                            muted: '#6b7280'
                         }
                     },
                     fontFamily: {
@@ -50,8 +45,8 @@ $isLoggedIn = Auth::check();
     
     <style>
         body {
-            background-color: #080809;
-            color: #f1f5f9;
+            background-color: #ffffff;
+            color: #111827;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
@@ -59,124 +54,125 @@ $isLoggedIn = Auth::check();
             font-family: 'Syne', sans-serif;
             letter-spacing: -0.04em;
         }
-        /* Custom scrollbar */
+        /* Minimalist scrollbar */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 5px;
         }
         ::-webkit-scrollbar-track {
-            background: #0e0e11;
+            background: #ffffff;
         }
         ::-webkit-scrollbar-thumb {
-            background: #27272a;
-            border-radius: 3px;
+            background: #d1d5db;
+            border-radius: 2px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #3f3f46;
+            background: #9ca3af;
         }
     </style>
 </head>
-<body class="bg-[#080809] text-zinc-100 min-h-screen flex flex-col antialiased selection:bg-zinc-100 selection:text-black">
+<body class="bg-white text-zinc-900 min-h-screen flex flex-col antialiased selection:bg-black selection:text-white">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-zinc-950 border-b border-zinc-800/60 text-xs py-2 px-4 text-center tracking-widest uppercase font-semibold text-zinc-400">
-        <span class="inline-block animate-pulse text-emerald-400 mr-2">●</span>
+    <!-- Top Announcement Bar (Subtle & Minimalist) -->
+    <div class="bg-zinc-100 border-b border-zinc-200 text-[11px] py-2 px-4 text-center tracking-widest uppercase font-medium text-zinc-600">
         <span>FREE SHIPPING JABODETABEK MIN. IDR 500K</span>
-        <span class="mx-3 text-zinc-700">|</span>
-        <span class="text-zinc-200">DROP 04: DISTORTED REALITY IS LIVE</span>
+        <span class="mx-3 text-zinc-300">|</span>
+        <span class="text-zinc-900 font-semibold">DROP 04 IS LIVE</span>
     </div>
 
-    <!-- Main Navigation Bar -->
-    <header class="sticky top-0 z-40 bg-[#080809]/90 backdrop-blur-md border-b border-zinc-800/80 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- Main Navigation Bar (Clean White, CALLE Style) -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-4 flex items-center justify-between">
             
-            <!-- Mobile Menu Trigger -->
-            <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="md:hidden p-2 text-zinc-400 hover:text-white focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
-                </svg>
-            </button>
-
-            <!-- Brand Logo -->
+            <!-- Left: Brand Logo & Mobile Trigger -->
             <div class="flex items-center space-x-3">
-                <a href="index.php" class="flex items-center space-x-2 group">
-                    <span class="font-heading font-black text-2xl sm:text-3xl tracking-tighter text-white group-hover:tracking-normal transition-all duration-300">
-                        MORTYX<span class="text-zinc-500 text-lg">®</span>
+                <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="md:hidden p-1.5 text-zinc-800 hover:text-black focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+                <a href="index.php" class="flex items-center">
+                    <span class="font-heading font-black text-2xl sm:text-3xl tracking-tighter text-black uppercase">
+                        MORTYX
                     </span>
                 </a>
             </div>
 
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold uppercase tracking-wider text-zinc-400">
-                <a href="#catalog" class="hover:text-white transition-colors duration-200">Catalog</a>
-                <a href="#featured" class="hover:text-white transition-colors duration-200">Drop 04</a>
-                <a href="#lookbook" class="hover:text-white transition-colors duration-200">Lookbook</a>
-                <a href="#about" class="hover:text-white transition-colors duration-200">Manifesto</a>
+            <!-- Center: Navigation Links (Clean & Minimalist) -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-zinc-800">
+                <a href="#catalog" class="hover:text-zinc-500 transition-colors">Catalog</a>
+                <a href="#lookbook" class="hover:text-zinc-500 transition-colors">Community</a>
+                <a href="#catalog" class="hover:text-zinc-500 transition-colors">Archives</a>
+                <a href="#about" class="hover:text-zinc-500 transition-colors">About</a>
             </nav>
 
-            <!-- Action Controls (Search, Wishlist, Cart Drawer) -->
-            <div class="flex items-center space-x-4">
+            <!-- Right: Currency, Search, Cart, Account -->
+            <div class="flex items-center space-x-5 text-xs font-bold uppercase tracking-wider text-zinc-900">
+                
+                <!-- Currency Indicator (Indonesian Flag + IDR) -->
+                <div class="hidden sm:flex items-center space-x-1.5 text-zinc-900 font-bold select-none">
+                    <span class="inline-block w-4 h-2.5 rounded-[1px] overflow-hidden border border-zinc-300 relative">
+                        <span class="block h-[5px] bg-[#e11d48]"></span>
+                        <span class="block h-[5px] bg-white"></span>
+                    </span>
+                    <span class="text-xs">IDR</span>
+                </div>
+
                 <!-- Search Toggle -->
-                <button id="searchToggleBtn" aria-label="Search" class="p-2 text-zinc-400 hover:text-white transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button id="searchToggleBtn" aria-label="Search" class="p-1 text-zinc-800 hover:text-black transition-colors" title="Search catalog">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
                 </button>
 
-                <!-- Auth / Account Control -->
+                <!-- Cart Button with Count Indicator -->
+                <button id="cartDrawerOpenBtn" aria-label="View Shopping Cart" class="hover:text-zinc-500 transition-colors flex items-center space-x-1">
+                    <span>CART</span>
+                    <span id="cartCountBadge" class="text-xs font-mono font-bold">(0)</span>
+                </button>
+
+                <!-- Account / Profile Icon -->
                 <?php if ($isLoggedIn): ?>
-                    <a href="customer/account.php" class="flex items-center space-x-2 text-xs font-semibold text-zinc-300 hover:text-white bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 transition-colors hover:border-zinc-700" title="Member Portal">
-                        <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="customer/account.php" class="p-1 text-zinc-900 hover:text-zinc-500 transition-colors flex items-center space-x-1" title="Account (<?php echo htmlspecialchars($currentUser['name'] ?? 'MEMBER'); ?>)">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                         </svg>
-                        <span class="font-mono text-xs uppercase tracking-wider max-w-[90px] truncate hidden sm:inline"><?php echo htmlspecialchars($currentUser['name'] ?? 'MEMBER'); ?></span>
                     </a>
                 <?php else: ?>
-                    <a href="auth/login.php" class="hidden sm:inline-flex items-center space-x-1.5 text-xs font-semibold uppercase tracking-wider text-zinc-400 hover:text-white px-2 py-1 transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="auth/login.php" class="p-1 text-zinc-900 hover:text-zinc-500 transition-colors" title="Sign In">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                         </svg>
-                        <span>Sign In</span>
                     </a>
                 <?php endif; ?>
-
-                <!-- Cart Button with Count Badge -->
-                <button id="cartDrawerOpenBtn" aria-label="View Shopping Cart" class="relative p-2 text-zinc-300 hover:text-white flex items-center bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 space-x-2 transition-colors hover:border-zinc-700">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-                    </svg>
-                    <span class="text-xs font-bold font-mono tracking-wider">CART</span>
-                    <span id="cartCountBadge" class="bg-white text-black text-[10px] font-black rounded-full px-1.5 py-0.5 ml-1">0</span>
-                </button>
             </div>
         </div>
 
-        <!-- Search Bar Drawer (Slide Down) -->
-        <div id="searchDropdown" class="hidden border-t border-zinc-800 bg-[#0e0e11] px-4 py-3 sm:px-6">
+        <!-- Search Bar Dropdown (Clean White Slide Down) -->
+        <div id="searchDropdown" class="hidden border-t border-zinc-200 bg-zinc-50 px-4 py-3 sm:px-6">
             <div class="max-w-3xl mx-auto flex items-center">
-                <svg class="w-5 h-5 text-zinc-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4 text-zinc-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>
-                <input type="text" id="catalogSearchInput" placeholder="Cari hoodie, kaos heavyweight, cargo pants..." class="w-full bg-transparent text-sm text-white placeholder-zinc-500 focus:outline-none">
-                <button id="closeSearchBtn" class="text-xs uppercase tracking-wider text-zinc-400 hover:text-white ml-2">Close</button>
+                <input type="text" id="catalogSearchInput" placeholder="Cari t-shirt, hoodie, varsity jacket, cargo pants..." class="w-full bg-transparent text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none">
+                <button id="closeSearchBtn" class="text-xs uppercase font-bold tracking-wider text-zinc-500 hover:text-black ml-2">Close</button>
             </div>
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenuDropdown" class="hidden md:hidden border-t border-zinc-800 bg-zinc-950 px-4 pt-3 pb-6 space-y-3 text-sm uppercase tracking-wider font-semibold text-zinc-300">
-            <a href="#catalog" class="block py-2 border-b border-zinc-900 hover:text-white">Catalog</a>
-            <a href="#featured" class="block py-2 border-b border-zinc-900 hover:text-white">Drop 04</a>
-            <a href="#lookbook" class="block py-2 border-b border-zinc-900 hover:text-white">Lookbook</a>
-            <a href="#about" class="block py-2 border-b border-zinc-900 hover:text-white">Manifesto</a>
+        <div id="mobileMenuDropdown" class="hidden md:hidden border-t border-zinc-200 bg-white px-5 pt-3 pb-6 space-y-3 text-xs uppercase tracking-wider font-bold text-zinc-800">
+            <a href="#catalog" class="block py-2 border-b border-zinc-100 hover:text-black">Catalog</a>
+            <a href="#lookbook" class="block py-2 border-b border-zinc-100 hover:text-black">Community</a>
+            <a href="#catalog" class="block py-2 border-b border-zinc-100 hover:text-black">Archives</a>
+            <a href="#about" class="block py-2 border-b border-zinc-100 hover:text-black">About</a>
             <?php if ($isLoggedIn): ?>
-                <a href="customer/account.php" class="block py-2 border-b border-zinc-900 text-white font-mono flex items-center justify-between">
-                    <span>PORTAL: <?php echo htmlspecialchars($currentUser['name'] ?? 'MEMBER'); ?></span>
-                    <span class="text-xs text-zinc-500">→</span>
+                <a href="customer/account.php" class="block py-2 border-b border-zinc-100 text-black flex items-center justify-between">
+                    <span>Account: <?php echo htmlspecialchars($currentUser['name'] ?? 'MEMBER'); ?></span>
+                    <span class="text-zinc-400">→</span>
                 </a>
-                <a href="auth/logout.php" class="block py-2 border-b border-zinc-900 text-red-400">Sign Out</a>
+                <a href="auth/logout.php" class="block py-2 border-b border-zinc-100 text-red-600">Sign Out</a>
             <?php else: ?>
-                <a href="auth/login.php" class="block py-2 border-b border-zinc-900 hover:text-white">Sign In</a>
-                <a href="auth/register.php" class="block py-2 border-b border-zinc-900 hover:text-white">Create Account</a>
+                <a href="auth/login.php" class="block py-2 border-b border-zinc-100 hover:text-black">Sign In</a>
+                <a href="auth/register.php" class="block py-2 border-b border-zinc-100 hover:text-black">Create Account</a>
             <?php endif; ?>
         </div>
     </header>
-
