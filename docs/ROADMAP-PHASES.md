@@ -14,6 +14,7 @@ Dokumen ini melacak seluruh siklus pengembangan (SDLC) brand e-commerce streetwe
 | **Design Upgrade** | CALLE Minimalist UI Overhaul | `feature/minimalist-ui-redesign` | 🟢 MERGED | PR #4 (`b1bdd23`) | 66 Tests PASS | [`PHASE-REDESIGN-CALLE-MINIMALIST.md`](./phases/PHASE-REDESIGN-CALLE-MINIMALIST.md) |
 | **Streamline UX** | Landing Splash & Separate Catalog | `feature/landing-streamline` | 🟢 MERGED | PR #5 (`cf0dc2f`) | 66 Tests PASS | [`PHASE-LANDING-STREAMLINE.md`](./phases/PHASE-LANDING-STREAMLINE.md) |
 | **Footer Luxury** | Black Footer & Professional Icons | `feature/footer-luxury-redesign` | 🟢 MERGED | PR #6 (`b125ec5`) | 66 Tests PASS | [`PHASE-FOOTER-LUXURY.md`](./phases/PHASE-FOOTER-LUXURY.md) |
+| **Product Page** | CALLE-Inspired Product Page & Enhanced UX | `feature/product-page-redesign` | 🟡 IN PROGRESS | - | 66 Tests PASS | [`PHASE-PRODUCT-PAGE-REDESIGN.md`](./phases/PHASE-PRODUCT-PAGE-REDESIGN.md) |
 | **Phase 4** | Checkout & Stock Reservation Flow | `feature/checkout-flow` | ⚪ PLANNED | - | `test_checkout.php` | - |
 | **Phase 5** | Payment Gateway Webhook Integration | `feature/payment-webhook` | ⚪ PLANNED | - | `test_payment.php` | - |
 | **Phase 6** | Admin Inventory & Order Management | `feature/admin-dashboard` | ⚪ PLANNED | - | `test_admin.php` | - |
